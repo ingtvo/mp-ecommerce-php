@@ -36,7 +36,7 @@ if (!empty($_POST["type"])) {
             $response = '{"status": 400, "message": "No encontrado"}';
     }
 }else{
-    $response = '{"status": 400, "message": "No encontrado"}';
+    $response = '{"status": 200, "message": "No encontrado"}';
 }
 
   $fh = fopen("prueba.txt", 'w') or die("Se produjo un error al crear el archivo");
