@@ -1,3 +1,133 @@
+<?php
+// SDK de Mercado Pago
+require __DIR__ .  '/vendor/autoload.php';
+
+$prod = 'https://ingtvo-mp-commerce-php.herokuapp.com/';
+$dev = 'http://localhost/mp-ecommerce-php/';
+
+$base_url = $prod;
+
+//define ("PROD_ACCESS_TOKEN", "TEST-8660466533819101-052613-a9aa65f332d4a093a3c5298ef886dacd__LC_LA__-119161597");
+
+// Agrega credenciales
+MercadoPago\SDK::setAccessToken("TEST-8660466533819101-052613-a9aa65f332d4a093a3c5298ef886dacd__LC_LA__-119161597");
+
+//MercadoPago\SDK::setPlatformId("PLATFORM_ID");
+MercadoPago\SDK::setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
+//MercadoPago\SDK::setCorporationId("CORPORATION_ID");
+
+
+
+if($_POST){
+
+    $producto = [
+        'id' => $_POST['id'],
+        'img' => $_POST['img'],
+        'title' => $_POST['title'],
+        'price' => $_POST['price'],
+        'unit' => $_POST['unit']
+    ];
+}
+var_dump($_POST['id']);
+var_dump($_POST['price']);
+
+/*
+Datos del pagador:
+a) Nombre y Apellido: Lalo Landa
+b) Email: El email del test-user pagador entregado en este documento.
+c) Código de área: 52
+d) Teléfono: 5549737300
+
+Datos de la dirección del pagador:
+a) Nombre de la calle: Insurgentes Sur
+b) Número de la casa: 1602
+c) Código postal: 03940
+*/
+
+/*
+$producto = [
+    "ID" => 1234,
+    "product_name" => "",
+    "description" => "Telefono portatil;",
+    "image_url" => "assets/",
+    "quantity" => 1,
+    "price" => 0,
+    "email_exm" => "ingtvo@msn.com"
+];
+*/
+
+
+  // Comprador
+  $payer = new MercadoPago\Payer();
+  $payer->name = "Lalo";
+  $payer->surname = "Landa";
+  $payer->email = "test_user_58295862@testuser.com";
+  $payer->date_created = "2020-30-10T12:58:41.425-04:00";
+  $payer->phone = array(
+    "area_code" => "52",
+    "number" => "5549737300"
+  );
+  
+  $payer->address = array(
+    "street_name" => "Insurgentes Sur",
+    "street_number" => 1602,
+    "zip_code" => "03940"
+  );
+
+
+// Crea un objeto de preferencia
+$preference = new MercadoPago\Preference();
+/*
+  // Asocia tu etiqueta
+  $preference->tracks = array(
+    array(
+        'type' => 'google_ad',
+        'values' => array(
+          'conversion_id' => 'CONVERSION_ID',
+          'conversion_label' => 'CONVERSION_LABEL'
+        )
+    )
+  );
+*/
+$preference->payment_methods = array(
+  "excluded_payment_methods" => array(
+    array("id" => "amex")
+  ),
+  "excluded_payment_types" => array(
+    array('id' => "atm")
+  ),
+  "installments" => 6
+);
+
+//URL de Retorno
+$preference->back_urls = array(
+    "success" => $base_url."success.php",
+    "failure" => $base_url."failure.php",
+    "pending" => $base_url."pending.php"
+);
+
+$preference->notification_url =$base_url."notifications?source_news=webhooks";
+$preference->auto_return = "approved";
+
+
+
+
+// Crea un ítem en la preferencia
+$item = new MercadoPago\Item();
+$item->id = $producto['id'];
+$item->title = $producto['title'];
+$item->quantity = $producto['unit'];
+$item->unit_price = $producto['price'];
+$preference->items = array($item);
+$preference->save();
+
+
+echo "<pre>";
+var_dump($preference);
+echo "</pre>";
+
+?>
+
 <!DOCTYPE html>
 <html class="supports-animation supports-columns svg no-touch no-ie no-oldie no-ios supports-backdrop-filter as-mouseuser" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
@@ -11,6 +141,8 @@
     src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
     crossorigin="anonymous"></script>
+
+    <script src="https://www.mercadopago.com/v2/security.js" view="detail"></script>
 
     <link rel="stylesheet" href="./assets/category-landing.css" media="screen, print">
 
@@ -114,6 +246,7 @@
 
                                 </div>
                                 <div class="as-producttile-info" style="float:left;min-height: 168px;">
+                                    <script src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js" data-preference-id="<?php echo $preference->id; ?>"></script>
                                     <div class="as-producttile-titlepricewraper" style="min-height: 128px;">
                                         <div class="as-producttile-title">
                                             <h3 class="as-producttile-name">
@@ -130,7 +263,9 @@
                                             <?php echo "$" . $_POST['unit'] ?>
                                         </h3>
                                     </div>
-                                    <button type="submit" class="mercadopago-button" formmethod="post">Pagar</button>
+                                     <script src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js" data-preference-id="<?php echo $preference->id; ?>"></script>
+
+                                    <button type="submit" class="mercadopago-button" formmethod="post">Pagar la compra</button>
                                 </div>
                             </div>
                         </div>

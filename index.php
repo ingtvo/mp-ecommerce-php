@@ -1,3 +1,89 @@
+<?php
+// SDK de Mercado Pago
+require __DIR__ .  '/vendor/autoload.php';
+
+$prod = 'https://ingtvo-mp-commerce-php.herokuapp.com/';
+$dev = 'http://localhost/mp-ecommerce-php/';
+
+$base_url = $prod;
+
+//define ("PROD_ACCESS_TOKEN", "TEST-8660466533819101-052613-a9aa65f332d4a093a3c5298ef886dacd__LC_LA__-119161597");
+
+// Agrega credenciales
+MercadoPago\SDK::setAccessToken("TEST-8660466533819101-052613-a9aa65f332d4a093a3c5298ef886dacd__LC_LA__-119161597");
+
+
+/*
+Datos del pagador:
+a) Nombre y Apellido: Lalo Landa
+b) Email: El email del test-user pagador entregado en este documento.
+c) Código de área: 52
+d) Teléfono: 5549737300
+
+Datos de la dirección del pagador:
+a) Nombre de la calle: Insurgentes Sur
+b) Número de la casa: 1602
+c) Código postal: 03940
+
+curl -X POST \ -H 'Content-Type: application/json' \ -H 'Authorization: Bearer TEST-8660466533819101-052613-a9aa65f332d4a093a3c5298ef886dacd__LC_LA__-119161597' \ 'https://api.mercadopago.com/users/test_user' \ -d "{'site_id':'MLM'}"
+
+*/
+
+/*
+  // Comprador
+  $payer = new MercadoPago\Payer();
+  $payer->name = "Lalo";
+  $payer->surname = "Landa";
+  $payer->email = "test_user_58295862@testuser.com";
+  $payer->date_created = "2020-30-10T12:58:41.425-04:00";
+  $payer->phone = array(
+    "area_code" => "52",
+    "number" => "5549737300"
+  );
+  
+  $payer->address = array(
+    "street_name" => "Insurgentes Sur",
+    "street_number" => 1602,
+    "zip_code" => "03940"
+  );
+
+
+// Crea un objeto de preferencia
+$preference = new MercadoPago\Preference();
+
+$preference->payment_methods = array(
+  "excluded_payment_methods" => array(
+    array("id" => "amex")
+  ),
+  "excluded_payment_types" => array(
+    array('id' => , "atm");
+  ),
+  "installments" => 6
+);
+
+//URL de Retorno
+$preference->back_urls = array(
+    "success" => $base_url."success",
+    "failure" => $base_url."failure",
+    "pending" => $base_url."pending"
+);
+$preference->auto_return = "approved";
+
+
+
+
+// Crea un ítem en la preferencia
+$item = new MercadoPago\Item();
+$item->title = 'Mi producto';
+$item->quantity = 1;
+$item->unit_price = 75.56;
+$preference->items = array($item);
+$preference->save();
+
+*/
+
+
+?>
 <!DOCTYPE html>
 <html class="supports-animation supports-columns svg no-touch no-ie no-oldie no-ios supports-backdrop-filter as-mouseuser" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
@@ -11,6 +97,9 @@
     src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
     crossorigin="anonymous"></script>
+
+    <script src="https://www.mercadopago.com/v2/security.js" view="home"></script>
+
 
     <link rel="stylesheet" href="./assets/category-landing.css" media="screen, print">
 
@@ -42,7 +131,6 @@
 
 
 <body class="as-theme-light-heroimage">
-
     <div class="stack">
         
         <div class="as-search-wrapper" role="main">
@@ -63,7 +151,6 @@
                 </div>
             </div>
             <div class="as-search-results as-filter-open as-category-landing as-desktop" id="as-search-results">
-
                 <div id="accessories-tab" class="as-accessories-details">
                     <div class="as-accessories" id="as-accessories">
                         <div class="as-accessories-header">
@@ -74,22 +161,16 @@
                         <div class="as-searchnav-placeholder" style="height: 77px;">
                             <div class="row as-search-navbar" id="as-search-navbar" style="width: auto;">
                                 <div class="as-accessories-filter-tile column large-6 small-3">
-
                                     <button class="as-filter-button" aria-expanded="true" aria-controls="as-search-filters" type="button">
                                         <h2 class=" as-filter-button-text">
                                             Smartphones
                                         </h2>
                                     </button>
-
-
                                 </div>
-
                             </div>
                         </div>
                         <div class="as-accessories-results  as-search-desktop">
                             <div class="column as-search-filters" aria-hidden="false" id="as-search-filters" style="position: relative;">
-
-
                                 <div class="as-search-filter-container" style="transform: translate3d(0px, 0px, 0px);">
                                     <ul class="as-accordion-list">
                                         <li class="as-accordion-item">
@@ -109,7 +190,6 @@
                                                         <ul class="as-search-filter-items  as-filter-text-type    ">
                                                             <li class="as-filter-item       ">
                                                                 <a href="" class="as-filter-option  " aria-disabled="false" tabindex="0" data-tracking="ipadCompatibility=ipadpro_12_9_2, " role="checkbox" aria-checked="false">
-
                                                                     <span class="as-filter-name">
                                                                         <span class="as-search-filter-content">
                                                                             <span class="as-search-filter-text">
@@ -121,7 +201,6 @@
                                                             </li>
                                                             <li class="as-filter-item       ">
                                                                 <a href="" class="as-filter-option  " aria-disabled="false" tabindex="0" data-tracking="ipadCompatibility=ipadpro_12_9, " role="checkbox" aria-checked="false">
-
                                                                     <span class="as-filter-name">
                                                                         <span class="as-search-filter-content">
                                                                             <span class="as-search-filter-text">
@@ -133,7 +212,6 @@
                                                             </li>
                                                             <li class="as-filter-item       ">
                                                                 <a href="" class="as-filter-option  " aria-disabled="false" tabindex="0" data-tracking="ipadCompatibility=ipadpro_10_5, " role="checkbox" aria-checked="false">
-
                                                                     <span class="as-filter-name">
                                                                         <span class="as-search-filter-content">
                                                                             <span class="as-search-filter-text">
@@ -145,7 +223,6 @@
                                                             </li>
                                                             <li class="as-filter-item       ">
                                                                 <a href="" class="as-filter-option  " aria-disabled="false" tabindex="0" data-tracking="ipadCompatibility=ipadpro_9_7, " role="checkbox" aria-checked="false">
-
                                                                     <span class="as-filter-name">
                                                                         <span class="as-search-filter-content">
                                                                             <span class="as-search-filter-text">
@@ -157,7 +234,6 @@
                                                             </li>
                                                             <li class="as-filter-item       ">
                                                                 <a href="" class="as-filter-option  " aria-disabled="false" tabindex="0" data-tracking="ipadCompatibility=ipad_9_7, " role="checkbox" aria-checked="false">
-
                                                                     <span class="as-filter-name">
                                                                         <span class="as-search-filter-content">
                                                                             <span class="as-search-filter-text">
@@ -169,7 +245,6 @@
                                                             </li>
                                                             <li class="as-filter-item       ">
                                                                 <a href="" class="as-filter-option  " aria-disabled="false" tabindex="0" data-tracking="ipadCompatibility=ipad6gen, " role="checkbox" aria-checked="false">
-
                                                                     <span class="as-filter-name">
                                                                         <span class="as-search-filter-content">
                                                                             <span class="as-search-filter-text">
@@ -179,7 +254,6 @@
                                                                     </span>
                                                                 </a>
                                                             </li>
-
                                                         </ul>
                                                         <button class="as-searchmoreless-toggle as-searchfilter-morebutton  as-search-more" id="iPad Compatibility_more">
                                                             <span class="as-search-morelessbutton-text">More</span>
@@ -210,18 +284,13 @@
                                                 
                                             </div>
                                         </li>
-
                                     </ul>
                                 </div>
-
-
                             </div>
                             <div class="column small-12 as-search-results-tiles as-search-results-width">
-
                                 <div class="as-producttile large-4 small-6 group-1">
                                     <div class="as-producttile-tilehero with-paddlenav with-paddlenav-onhover">
                                         <div class="as-dummy-container as-dummy-img">
-
                                             <img src="./assets/samsung-galaxy-s9-xxl.jpg" class="ir ir item-image as-producttile-image  " alt="" width="445" height="445">
                                         </div>
                                         <div class="images mini-gallery gal1 ">
@@ -230,9 +299,8 @@
                                                     <img src="./assets/samsung-galaxy-s9-xxl.jpg" class="ir relatedlink item-image as-producttile-image" alt="" width="445" height="445" data-scale-params-2="wid=890&amp;hei=890&amp;fmt=jpeg&amp;qlt=95&amp;op_usm=0.5,0.5&amp;.v=1502831144597">
                                                 </li>
                                             </ul>
-
                                             <div class="as-isdesktop with-paddlenav with-paddlenav-onhover">
-                                                <div class="clearfix image-list xs-no-js as-util-relatedlink relatedlink" data-relatedlink="2|Beats Studio3 Wireless Over‑Ear Headphones - Shadow Gray|MQUF2">
+                                                <div class="clearfix image-list xs-no-js as-util-relatedlink relatedlink" data-relatedlink="2|Beats Studio3 Wireless Over‑Ear Headphones - Shadow Gray|MQUF2">
                                                     <div class="as-tilegallery-element as-image-selected">
                                                         <div class=""></div>
                                                         <img src="./assets/samsung-galaxy-s9-xxl.jpg" class="ir ir item-image as-producttile-image" alt="" data-desc="Samsung galaxy" style="content:-webkit-image-set(url(https://md6.pricebaba.com/images/product/mobile/46638/samsung-galaxy-s9-xxl.jpg">
@@ -241,7 +309,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                     <div class="as-producttile-info" style="min-height: 168px;">
                                         <div class="as-producttile-titlepricewraper" style="min-height: 128px;">
@@ -250,15 +317,15 @@
                                                     <p class="as-producttile-tilelink">
                                                         <span data-ase-truncate="2">Samsung Galaxy S9</span>
                                                     </p>
-
                                                 </h3>
                                             </div>
                                             <div class="as-price-currentprice as-producttile-currentprice">
-                                                $15.000
+                                                $15,000
                                             </div>
                                         </div>
-                                        <form action="/detail.php" method="get">
+                                        <form action="<?php echo $base_url?>detail.php" method="get">
                                             <input type="hidden" name="img" value="./assets/samsung-galaxy-s9-xxl.jpg">
+                                            <input type="hidden" name="id" value="1234">
                                             <input type="hidden" name="title" value="Samsung Galaxy S9">
                                             <input type="hidden" name="price" value="15000">
                                             <input type="hidden" name="unit" value="1">
@@ -269,11 +336,9 @@
                                 <div class="as-producttile large-4 small-6 group-1">
                                     <div class="as-producttile-tilehero with-paddlenav with-paddlenav-onhover">
                                         <div class="as-dummy-container as-dummy-img">
-
                                             <img src="./assets/l6g6.jpg" class="ir ir item-image as-producttile-image " alt="" width="445" height="445">
                                         </div>
                                         <div class="images mini-gallery gal2 ">
-
                                             <div class="as-isdesktop with-paddlenav with-paddlenav-onhover">
                                                 <div class="clearfix image-list xs-no-js as-util-relatedlink relatedlink" data-relatedlink="3|BeatsX Earphones - UNDEFEATED Limited Edition - Camo|MQD92">
                                                     <div class="as-tilegallery-element as-image-selected">
@@ -283,7 +348,6 @@
                                                     
                                                 </div>
                                             </div>
-
                                             <div class="as-isipad" aria-hidden="true">
                                                 <ul class="clearfix">
                                                     <li class="as-searchtile-mobile">
@@ -291,28 +355,23 @@
                                                     </li>
                                                 </ul>
                                             </div>
-
                                         </div>
-
                                     </div>
                                     <div class="as-producttile-info" style="min-height: 168px;">
                                         <div class="as-producttile-titlepricewraper" style="min-height: 128px;">
                                             <div class="as-producttile-title">
                                                 <h3 class="as-producttile-name">
                                                     <p class="as-producttile-tilelink">
-
                                                         <span data-ase-truncate="2">LG G6</span>
-
-
                                                     </p>
-
                                                 </h3>
                                             </div>
                                             <div class="as-price-currentprice as-producttile-currentprice">
-                                                $10.000
+                                                $10,000
                                             </div>
                                         </div>
-                                        <form action="/detail.php" method="get">
+                                        <form action="<?php echo $base_url?>detail.php" method="get">
+                                            <input type="hidden" name="id" value="4321">
                                             <input type="hidden" name="img" value="./assets/l6g6.jpg">
                                             <input type="hidden" name="title" value="LG G6">
                                             <input type="hidden" name="price" value="10000">
@@ -324,7 +383,6 @@
                                 <div class="as-producttile large-4 small-6 group-1">
                                     <div class="as-producttile-tilehero with-paddlenav with-paddlenav-onhover">
                                         <div class="as-dummy-container as-dummy-img">
-
                                             <img src="./assets/Screen Shot 2017-11-01 at 13.01.54.png" class="ir ir item-image as-producttile-image  " alt="" width="445" height="445">
                                         </div>
                                         <div class="images mini-gallery gal0 ">
@@ -333,7 +391,6 @@
                                                     <img src="./assets/MMEF2" class="ir relatedlink item-image as-producttile-image" alt="" width="445" height="445" data-scale-params-2="wid=890&amp;hei=890&amp;fmt=jpeg&amp;qlt=95&amp;op_usm=0.5,0.5&amp;.v=1503962928226">
                                                 </li>
                                             </ul>
-
                                             <div class="as-isdesktop with-paddlenav with-paddlenav-onhover">
                                                 <div class="clearfix image-list xs-no-js as-util-relatedlink relatedlink" data-relatedlink="1|AirPods|MMEF2" style="left: 0px;">
                                                     <div class="as-tilegallery-element as-image-selected">
@@ -346,11 +403,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                            
-
                                         </div>
-
                                     </div>
                                     <div class="as-producttile-info" style="min-height: 168px;">
                                         <div class="as-producttile-titlepricewraper" style="min-height: 128px;">
@@ -358,19 +412,17 @@
                                                 <h3 class="as-producttile-name">
                                                     <div class="as-producttile-tilelink relatedlink" data-var-name="s.prop27|s.prop29" data-relatedlink="1|AirPods|MMEF2" data-evar11="MMEF2|category">
                                                     <span data-ase-truncate="2">iPhone 8</span>
-
-
                                                     </div>
-
                                                 </h3>
                                             </div>
                                             <div class="as-price-currentprice as-producttile-currentprice">
-                                                $16.000
+                                                $16,000
                                                 <span class="as-price-previousprice as-producttile-previousprice">
                                                 </span>
                                             </div>
                                         </div>
-                                        <form action="/detail.php" method="get">
+                                        <form action="<?php echo $base_url?>detail.php" method="get">
+                                            <input type="hidden" name="id" value="1111">
                                             <input type="hidden" name="img" value="./assets/u_10168742.jpg">
                                             <input type="hidden" name="title" value="iPhone 8">
                                             <input type="hidden" name="price" value="16000">
@@ -382,53 +434,46 @@
                                 <div class="as-producttile large-4 small-6 group-2">
                                     <div class="as-producttile-tilehero with-paddlenav with-paddlenav-onhover">
                                         <div class="as-dummy-container as-dummy-img">
-
                                             <img src="./assets/wireless-headphones" class="ir ir item-image as-producttile-image  " alt="" width="445" height="445">
                                         </div>
                                         <div class="images mini-gallery gal3 ">
                                            
-
                                             <div class="as-isdesktop with-paddlenav with-paddlenav-onhover">
-                                                <div class="clearfix image-list xs-no-js as-util-relatedlink relatedlink" data-relatedlink="4|BeatsX Earphones - Matte Silver|MR3J2">
+                                                <div class="clearfix image-list xs-no-js as-util-relatedlink relatedlink" data-relatedlink="4|BeatsX Earphones - Matte Silver|MR3J2">
                                                     <div class="as-tilegallery-element as-image-selected">
                                                         <div class=""></div>
-                                                        <img src="./assets/motorola-moto-g5-plus-1.jpg" class="ir ir item-image as-producttile-image" alt="" width="445" height="445" data-desc="BeatsX Earphones - Matte Silver - Image 1 " style="content:-webkit-image-set(url(https://cdn2.gsmarena.com/vv/pics/motorola/motorola-moto-g5-plus-1.jpg) 1x);">
+                                                        <img src="./assets/motorola-moto-g5-plus-1.jpg" class="ir ir item-image as-producttile-image" alt="" width="445" height="445" data-desc="BeatsX Earphones - Matte Silver - Image 1 " style="content:-webkit-image-set(url(https://cdn2.gsmarena.com/vv/pics/motorola/motorola-moto-g5-plus-1.jpg) 1x);">
                                                     </div>
                                                     
                                                 </div>
-
                                             </div>
-
                                             <div class="as-isipad" aria-hidden="true">
                                                 <ul class="clearfix">
                                                     <li class="as-searchtile-mobile">
-                                                        <img src="./assets/MR3J2" class="ir as-util-relatedlink item-image as-producttile-image relatedlink" alt="" width="445" height="445" data-scale-params-2="wid=890&amp;hei=890&amp;fmt=jpeg&amp;qlt=95&amp;op_usm=0.5,0.5&amp;.v=1504037421108" data-relatedlink="4|BeatsX Earphones - Matte Silver|MR3J2">
+                                                        <img src="./assets/MR3J2" class="ir as-util-relatedlink item-image as-producttile-image relatedlink" alt="" width="445" height="445" data-scale-params-2="wid=890&amp;hei=890&amp;fmt=jpeg&amp;qlt=95&amp;op_usm=0.5,0.5&amp;.v=1504037421108" data-relatedlink="4|BeatsX Earphones - Matte Silver|MR3J2">
                                                     </li>
                                                 </ul>
                                             </div>
-
                                         </div>
-
                                     </div>
                                     <div class="as-producttile-info" style="min-height: 168px;">
                                         <div class="as-producttile-titlepricewraper" style="min-height: 128px;">
                                             <div class="as-producttile-title">
                                                 <h3 class="as-producttile-name">
                                                     <p class="as-producttile-tilelink">
-
                                                         <span data-ase-truncate="2">Motorola G5</span>
                                                     </p>
-
                                                 </h3>
                                             </div>
                                             <div class="as-price-currentprice as-producttile-currentprice">
-                                                $9.000
+                                                $9,000
                                                 <span class="as-price-previousprice as-producttile-previousprice">
                                                 </span>
                                             </div>
                                         </div>
-                                        <form action="/detail.php" method="get">
+                                        <form action="<?php echo $base_url?>detail.php" method="get">
                                             <input type="hidden" name="img" value="./assets/motorola-moto-g5-plus-1.jpg">
+                                            <input type="hidden" name="id" value="2222">
                                             <input type="hidden" name="title" value="Motorola G5">
                                             <input type="hidden" name="price" value="9000">
                                             <input type="hidden" name="unit" value="1">
@@ -439,7 +484,6 @@
                                 <div class="as-producttile large-4 small-6 group-2">
                                     <div class="as-producttile-tilehero with-paddlenav with-paddlenav-onhover">
                                         <div class="as-dummy-container as-dummy-img">
-
                                             <img src="./assets/wireless-headphones" class="ir ir item-image as-producttile-image  " alt="" width="445" height="445">
                                         </div>
                                         <div class="images mini-gallery gal4 ">
@@ -448,7 +492,6 @@
                                                     <img src="./assets/motorola-moto-g4-3.jpg" class="ir relatedlink item-image as-producttile-image" alt="" width="445" height="445" data-scale-params-2="wid=890&amp;hei=890&amp;fmt=jpeg&amp;qlt=95&amp;op_usm=0.5,0.5&amp;.v=1524778255945">
                                                 </li>
                                             </ul>
-
                                             <div class="as-isdesktop with-paddlenav with-paddlenav-onhover">
                                                 <div class="clearfix image-list xs-no-js as-util-relatedlink relatedlink" data-relatedlink="5|Beats Solo3 Wireless On-Ear Headphones - Neighborhood Collection - Break Blue|MQ392">
                                                     <div class="as-tilegallery-element as-image-selected">
@@ -457,12 +500,9 @@
                                                     </div>
                                                     
                                                 </div>
-
                                                
                                             </div>
-
                                         </div>
-
                                     </div>
                                     <div class="as-producttile-info" style="min-height: 168px;">
                                         <div class="as-producttile-titlepricewraper" style="min-height: 128px;">
@@ -474,10 +514,11 @@
                                                 </h3>
                                             </div>
                                             <div class="as-price-currentprice as-producttile-currentprice">
-                                                $8.000
+                                                $8,000
                                             </div>
                                         </div>
-                                        <form action="/detail.php" method="get">
+                                        <form action="<?php echo $base_url?>detail.php" method="get">
+                                            <input type="hidden" name="id" value="3333">
                                             <input type="hidden" name="img" value="./assets/motorola-moto-g4-3.jpg">
                                             <input type="hidden" name="title" value="Moto G4">
                                             <input type="hidden" name="price" value="8000">
@@ -489,12 +530,10 @@
                                 <div class="as-producttile large-4 small-6 group-2">
                                     <div class="as-producttile-tilehero with-paddlenav with-paddlenav-onhover">
                                         <div class="as-dummy-container as-dummy-img">
-
                                             <img src="./assets/wireless-headphones" class="ir ir item-image as-producttile-image  " alt="" width="445" height="445">
                                         </div>
                                         <div class="images mini-gallery gal5 ">
                                        
-
                                             <div class="as-isdesktop with-paddlenav with-paddlenav-onhover">
                                                 <div class="clearfix image-list xs-no-js as-util-relatedlink relatedlink" data-relatedlink="6|Powerbeats3 Wireless Earphones - Neighborhood Collection - Brick Red|MPXP2">
                                                     <div class="as-tilegallery-element as-image-selected">
@@ -503,14 +542,10 @@
                                                     </div>
                                                     
                                                 </div>
-
                                                 
                                             </div>
-
                                             
-
                                         </div>
-
                                     </div>
                                     <div class="as-producttile-info" style="min-height: 168px;">
                                         <div class="as-producttile-titlepricewraper" style="min-height: 128px;">
@@ -519,17 +554,17 @@
                                                     <p class="as-producttile-tilelink">
                                                         <span data-ase-truncate="2">Sony Xperia XZ2</span>
                                                     </p>
-
                                                 </h3>
                                             </div>
                                             <div class="as-price-currentprice as-producttile-currentprice">
-                                                $10.000
+                                                $10,000
                                                 <span class="as-price-previousprice as-producttile-previousprice">
                                                 </span>
                                             </div>
                                         </div>
-                                        <form action="/detail.php" method="get">
+                                        <form action="<?php echo $base_url?>detail.php" method="get">
                                             <input type="hidden" name="img" value="./assets/003.jpg">
+                                            <input type="hidden" name="id" value="4444">
                                             <input type="hidden" name="title" value="Sony Xperia XZ2">
                                             <input type="hidden" name="price" value="10000">
                                             <input type="hidden" name="unit" value="1">
@@ -537,7 +572,6 @@
                                         </form>
                                     </div>
                                 </div>
-
                             </div>
                             <div class="column large-12 small-12">
                                 <div class="as-pagination-align">
@@ -545,8 +579,6 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -559,4 +591,26 @@
             </div>
         </div>
 
-</div><div class="mp-mercadopago-checkout-wrapper" style="z-index:-2147483647;display:block;background:rgba(0, 0, 0, 0.7);border:0;overflow:hidden;visibility:hidden;margin:0;padding:0;position:fixed;left:0;top:0;width:0;opacity:0;height:0;transition:opacity 220ms ease-in;"> <svg class="mp-spinner" viewBox="25 25 50 50"> <circle class="mp-spinner-path" cx="50" cy="50" r="20" fill="none" stroke-miterlimit="10"></circle> </svg> </div><div class="mp-mercadopago-checkout-wrapper" style="z-index:-2147483647;display:block;background:rgba(0, 0, 0, 0.7);border:0;overflow:hidden;visibility:hidden;margin:0;padding:0;position:fixed;left:0;top:0;width:0;opacity:0;height:0;transition:opacity 220ms ease-in;"> <svg class="mp-spinner" viewBox="25 25 50 50"> <circle class="mp-spinner-path" cx="50" cy="50" r="20" fill="none" stroke-miterlimit="10"></circle> </svg> </div><div class="mp-mercadopago-checkout-wrapper" style="z-index:-2147483647;display:block;background:rgba(0, 0, 0, 0.7);border:0;overflow:hidden;visibility:hidden;margin:0;padding:0;position:fixed;left:0;top:0;width:0;opacity:0;height:0;transition:opacity 220ms ease-in;"> <svg class="mp-spinner" viewBox="25 25 50 50"> <circle class="mp-spinner-path" cx="50" cy="50" r="20" fill="none" stroke-miterlimit="10"></circle> </svg> </div><div class="mp-mercadopago-checkout-wrapper" style="z-index:-2147483647;display:block;background:rgba(0, 0, 0, 0.7);border:0;overflow:hidden;visibility:hidden;margin:0;padding:0;position:fixed;left:0;top:0;width:0;opacity:0;height:0;transition:opacity 220ms ease-in;"> <svg class="mp-spinner" viewBox="25 25 50 50"> <circle class="mp-spinner-path" cx="50" cy="50" r="20" fill="none" stroke-miterlimit="10"></circle> </svg> </div><div class="mp-mercadopago-checkout-wrapper" style="z-index:-2147483647;display:block;background:rgba(0, 0, 0, 0.7);border:0;overflow:hidden;visibility:hidden;margin:0;padding:0;position:fixed;left:0;top:0;width:0;opacity:0;height:0;transition:opacity 220ms ease-in;"> <svg class="mp-spinner" viewBox="25 25 50 50"> <circle class="mp-spinner-path" cx="50" cy="50" r="20" fill="none" stroke-miterlimit="10"></circle> </svg> </div><div class="mp-mercadopago-checkout-wrapper" style="z-index:-2147483647;display:block;background:rgba(0, 0, 0, 0.7);border:0;overflow:hidden;visibility:hidden;margin:0;padding:0;position:fixed;left:0;top:0;width:0;opacity:0;height:0;transition:opacity 220ms ease-in;"> <svg class="mp-spinner" viewBox="25 25 50 50"> <circle class="mp-spinner-path" cx="50" cy="50" r="20" fill="none" stroke-miterlimit="10"></circle> </svg> </div><div id="ac-gn-viewport-emitter"> </div></body></html>
+</div><div class="mp-mercadopago-checkout-wrapper" style="z-index:-2147483647;display:block;background:rgba(0, 0, 0, 0.7);border:0;overflow:hidden;visibility:hidden;margin:0;padding:0;position:fixed;left:0;top:0;width:0;opacity:0;height:0;transition:opacity 220ms ease-in;"> <svg class="mp-spinner" viewBox="25 25 50 50"> <circle class="mp-spinner-path" cx="50" cy="50" r="20" fill="none" stroke-miterlimit="10"></circle> </svg> </div><div class="mp-mercadopago-checkout-wrapper" style="z-index:-2147483647;display:block;background:rgba(0, 0, 0, 0.7);border:0;overflow:hidden;visibility:hidden;margin:0;padding:0;position:fixed;left:0;top:0;width:0;opacity:0;height:0;transition:opacity 220ms ease-in;"> <svg class="mp-spinner" viewBox="25 25 50 50"> <circle class="mp-spinner-path" cx="50" cy="50" r="20" fill="none" stroke-miterlimit="10"></circle> </svg> </div><div class="mp-mercadopago-checkout-wrapper" style="z-index:-2147483647;display:block;background:rgba(0, 0, 0, 0.7);border:0;overflow:hidden;visibility:hidden;margin:0;padding:0;position:fixed;left:0;top:0;width:0;opacity:0;height:0;transition:opacity 220ms ease-in;"> <svg class="mp-spinner" viewBox="25 25 50 50"> <circle class="mp-spinner-path" cx="50" cy="50" r="20" fill="none" stroke-miterlimit="10"></circle> </svg> </div><div class="mp-mercadopago-checkout-wrapper" style="z-index:-2147483647;display:block;background:rgba(0, 0, 0, 0.7);border:0;overflow:hidden;visibility:hidden;margin:0;padding:0;position:fixed;left:0;top:0;width:0;opacity:0;height:0;transition:opacity 220ms ease-in;"> <svg class="mp-spinner" viewBox="25 25 50 50"> <circle class="mp-spinner-path" cx="50" cy="50" r="20" fill="none" stroke-miterlimit="10"></circle> </svg> </div><div class="mp-mercadopago-checkout-wrapper" style="z-index:-2147483647;display:block;background:rgba(0, 0, 0, 0.7);border:0;overflow:hidden;visibility:hidden;margin:0;padding:0;position:fixed;left:0;top:0;width:0;opacity:0;height:0;transition:opacity 220ms ease-in;"> <svg class="mp-spinner" viewBox="25 25 50 50"> <circle class="mp-spinner-path" cx="50" cy="50" r="20" fill="none" stroke-miterlimit="10"></circle> </svg> </div><div class="mp-mercadopago-checkout-wrapper" style="z-index:-2147483647;display:block;background:rgba(0, 0, 0, 0.7);border:0;overflow:hidden;visibility:hidden;margin:0;padding:0;position:fixed;left:0;top:0;width:0;opacity:0;height:0;transition:opacity 220ms ease-in;"> <svg class="mp-spinner" viewBox="25 25 50 50"> <circle class="mp-spinner-path" cx="50" cy="50" r="20" fill="none" stroke-miterlimit="10"></circle> </svg> </div><div id="ac-gn-viewport-emitter"> </div>
+</body>
+</html>
+
+<?php
+/*
+
+Información Adicional
+Integrator-id
+id: dev_24c65fb163bf11ea96500242ac130004
+Test User (Vendedor)
+collector_id 491494389
+Public-Key APP_USR-5b9a3e27-3852-407d-8f49-e08bd5990007
+Access-Token APP_USR-6718728269189792-112017-dc8b338195215145a4ec035fdde5cedf-491494389
+Para probar los flujos, deberán usar un test-user que será el pagador o comprador y podrán
+utilizar las tarjetas de prueba de Mercado Pago:
+Test User (Comprador)
+ID 535650015
+Email test_user_58295862@testuser.com
+Password qatest9980
+
+*/
+?>
