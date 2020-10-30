@@ -21,9 +21,10 @@ $base_url = $prod;
 </html>
 
 <?php
+/*
 if(!empty($_POST["type"])){
  var_dump($_POST["type"]);
 }
-
+*/
 
 ?>
