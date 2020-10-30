@@ -28,8 +28,6 @@ if($_POST){
         'unit' => $_POST['unit']
     ];
 }
-var_dump($_POST['id']);
-var_dump($_POST['price']);
 
 /*
 Datos del pagador:
