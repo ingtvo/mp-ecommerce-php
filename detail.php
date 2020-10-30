@@ -97,8 +97,8 @@ $preference->payment_methods = array(
   "installments" => 6
 );
 
-//
-$preference->back_urls = "ingtvo@msn.com"
+//.
+$preference->back_urls = "ingtvo@msn.com";
 
 //URL de Retorno
 $preference->back_urls = array(
