@@ -10,7 +10,7 @@ $base_url = $prod;
 //define ("PROD_ACCESS_TOKEN", "TEST-8660466533819101-052613-a9aa65f332d4a093a3c5298ef886dacd__LC_LA__-119161597");
 
 // Agrega credenciales
-MercadoPago\SDK::setAccessToken("TEST-8660466533819101-052613-a9aa65f332d4a093a3c5298ef886dacd__LC_LA__-119161597");
+MercadoPago\SDK::setAccessToken("APP_USR-1159009372558727-072921-8d0b9980c7494985a5abd19fbe921a3d-617633181");
 
 //MercadoPago\SDK::setPlatformId("PLATFORM_ID");
 MercadoPago\SDK::setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
@@ -61,7 +61,7 @@ $producto = [
   $payer = new MercadoPago\Payer();
   $payer->name = "Lalo";
   $payer->surname = "Landa";
-  $payer->email = "test_user_58295862@testuser.com";
+  $payer->email = "test_user_81131286@testuser.com";
   $payer->date_created = "2020-30-10T12:58:41.425-04:00";
   $payer->phone = array(
     "area_code" => "52",
@@ -99,6 +99,9 @@ $preference->payment_methods = array(
   "installments" => 6
 );
 
+//
+$preference->back_urls = "ingtvo@msn.com"
+
 //URL de Retorno
 $preference->back_urls = array(
     "success" => $base_url."success.php",
@@ -114,18 +117,18 @@ $preference->auto_return = "approved";
 
 // Crea un ítem en la preferencia
 $item = new MercadoPago\Item();
-$item->id = $producto['id'];
+$item->id = 1234;//$producto['id'];
 $item->title = $producto['title'];
 $item->quantity = $producto['unit'];
 $item->unit_price = $producto['price'];
 $preference->items = array($item);
 $preference->save();
 
-
+/*
 echo "<pre>";
 var_dump($preference);
 echo "</pre>";
-
+*/
 ?>
 
 <!DOCTYPE html>

@@ -9,7 +9,7 @@ http_response_code(200);
 /*
 $base_url = $prod;
 
-    MercadoPago\SDK::setAccessToken("TEST-8660466533819101-052613-a9aa65f332d4a093a3c5298ef886dacd__LC_LA__-119161597");
+    MercadoPago\SDK::setAccessToken("APP_USR-1159009372558727-072921-8d0b9980c7494985a5abd19fbe921a3d-617633181");
 
 
 if (!empty($_POST["type"])) {
