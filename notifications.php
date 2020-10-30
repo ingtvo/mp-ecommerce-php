@@ -5,7 +5,7 @@ require __DIR__ .  '/vendor/autoload.php';
 $prod = 'https://ingtvo-mp-commerce-php.herokuapp.com/';
 $dev = 'http://localhost/mp-ecommerce-php/';
 
-http_response_code(400);
+http_response_code(200);
 /*
 $base_url = $prod;
 
