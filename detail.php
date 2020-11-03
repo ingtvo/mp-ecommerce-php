@@ -265,7 +265,7 @@ echo "</pre>";
                                         </h3>
                                     </div>
                                      <script src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js" data-preference-id="<?php echo $preference->id; ?>"></script>
-                                     <a href="<?php echo $preference->init_point; ?>">post">Pagar la compra</a>
+                                     <a href="<?php echo $preference->init_point; ?>">Pagar la compra</a>
                                     <!--<button type="submit" class="mercadopago-button" formmethod="post">Pagar la compra</button>-->
                                 </div>
                             </div>
