@@ -10,7 +10,7 @@ http_response_code(200);
 $base_url = $prod;
 
     MercadoPago\SDK::setAccessToken("APP_USR-1159009372558727-072921-8d0b9980c7494985a5abd19fbe921a3d-617633181");
-
+*/
 
 if (!empty($_POST["type"])) {
 
@@ -53,7 +53,7 @@ fwrite($fh, $texto) or die("No se pudo escribir en el archivo");
   
 fclose($fh);
 echo $response;
-*/
+
 ?>
 
 

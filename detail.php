@@ -247,7 +247,7 @@ echo "</pre>";
 
                                 </div>
                                 <div class="as-producttile-info" style="float:left;min-height: 168px;">
-                                    <script src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js" data-preference-id="<?php echo $preference->id; ?>"></script>
+                                    <!--<script src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js" data-preference-id="<?php echo $preference->id; ?>"></script>-->
                                     <div class="as-producttile-titlepricewraper" style="min-height: 128px;">
                                         <div class="as-producttile-title">
                                             <h3 class="as-producttile-name">
@@ -265,8 +265,8 @@ echo "</pre>";
                                         </h3>
                                     </div>
                                      <script src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js" data-preference-id="<?php echo $preference->id; ?>"></script>
-
-                                    <button type="submit" class="mercadopago-button" formmethod="post">Pagar la compra</button>
+                                     <a href="<?php echo $preference->init_point; ?>">post">Pagar la compra</a>
+                                    <!--<button type="submit" class="mercadopago-button" formmethod="post">Pagar la compra</button>-->
                                 </div>
                             </div>
                         </div>
